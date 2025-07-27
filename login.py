@@ -1,15 +1,18 @@
 import tkinter as tk
 from tkinter import messagebox
 from superadmin import abrirVentanaSuperadmin
+from admin import abrirVentanaAdmin
 
 def validarUsuario(usuario, contraseña):
     with open('datos/usuarios.txt', 'r') as archivo:
         usuarios = archivo.readlines()
 
     for linea in usuarios:
-        usr, con, rol = linea.strip().split(',')
-        if usr == usuario and con == contraseña:
-            return rol
+        datos = linea.strip().split(',')
+        if len(datos) >= 3:  # Mínimo: documento, contraseña, rol
+            usr, con, rol = datos[0], datos[1], datos[2]
+            if usr == usuario and con == contraseña:
+                return rol
     return None
 
 def abrirVentanaLogin():
@@ -22,9 +25,11 @@ def abrirVentanaLogin():
                 print("Bienvenido Super Administrador")
                 ventanaLogin.withdraw()
                 abrirVentanaSuperadmin()
-            elif rol == 'administrador':
+            elif rol == 'administrador' or rol == 'profesor':
                 print("Bienvenido Administrador")
-            elif rol == 'Estudiante':
+                ventanaLogin.withdraw()
+                abrirVentanaAdmin()
+            elif rol == 'estudiante':
                 print("Bienvenido Estudiante")
             else:
                 messagebox.showerror("Error", "Usuario o contraseña incorrectos")
