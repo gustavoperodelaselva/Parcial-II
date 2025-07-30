@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from superadmin import abrirVentanaSuperadmin
 from admin import abrirVentanaAdmin
-
+from estudiante import abrirVentanaEstudiante
 def validarUsuario(usuario, contraseña):
     with open('datos/usuarios.txt', 'r') as archivo:
         usuarios = archivo.readlines()
@@ -31,6 +31,8 @@ def abrirVentanaLogin():
                 abrirVentanaAdmin()
             elif rol == 'estudiante':
                 print("Bienvenido Estudiante")
+                ventanaLogin.withdraw()
+                abrirVentanaEstudiante(usuario)
             else:
                 messagebox.showerror("Error", "Usuario o contraseña incorrectos")
 

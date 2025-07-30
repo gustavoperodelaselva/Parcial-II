@@ -77,12 +77,12 @@ def abrirVentanaAdmin():
         cajaNprof=tk.Entry(ventanaModulos)
         cajaNprof.grid(row=1, column=1, padx=30, pady=5)
 
-        labelCod=tk.Label(ventanaModulos,text="Codigo materia")
+        labelCod=tk.Label(ventanaModulos,text="Codigo modulo")
         labelCod.grid(row=2, column=0,padx=30,pady=5)
         cajaCod=tk.Entry(ventanaModulos)
         cajaCod.grid(row=2,column=1,padx=30,pady=5)
 
-        labelMateria=tk.Label(ventanaModulos,text="Nombre materia")
+        labelMateria=tk.Label(ventanaModulos,text="Nombre modulo")
         labelMateria.grid(row=3,column=0,padx=30,pady=5)
         cajaMateria=tk.Entry(ventanaModulos)
         cajaMateria.grid(row=3,column=1,padx=30,pady=5)
@@ -149,7 +149,7 @@ def abrirVentanaAdmin():
         cajaDocumento = tk.Entry(ventanaCalificaciones)
         cajaDocumento.grid(row=1, column=1, padx=5, pady=5)
 
-        tk.Label(ventanaCalificaciones, text="Módulo:").grid(row=1, column=2, padx=5, pady=5)
+        tk.Label(ventanaCalificaciones, text="Cod. Módulo:").grid(row=1, column=2, padx=5, pady=5)
         cajaModulo = tk.Entry(ventanaCalificaciones)
         cajaModulo.grid(row=1, column=3, padx=5, pady=5)
 
