@@ -3,3 +3,4 @@ superadmin,123,superadministrador
 123456789,Gustavo1234567,estudiante,Gustavo Quintero
 147852369,Jroyet123,estudiante,Junior Royet
 789456123,Jroyet1234,profesor,Junior Hoyos
+000000000,Gustavo12344321,profesor,Gus

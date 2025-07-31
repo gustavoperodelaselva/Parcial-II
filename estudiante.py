@@ -16,28 +16,40 @@ def abrirVentanaEstudiante(documentoEstudiante):
     
     ventana = tk.Toplevel()
     ventana.title("Menú Estudiante")
-    ventana.geometry("400x250")
+    ventana.geometry("500x400")
     ventana.resizable(False, False)
 
+    ventana.grid_rowconfigure(0, weight=1)
+    ventana.grid_rowconfigure(3, weight=1)
+    ventana.grid_columnconfigure(0, weight=1)
+    ventana.grid_columnconfigure(1, weight=1)
+
     labelTitulo = tk.Label(ventana, text=f"Bienvenido Estudiante {nombreEstudiante}", font=("Arial", 16))
-    labelTitulo.grid(row=0, column=0, columnspan=2, pady=20, padx=30)
+    labelTitulo.grid(row=1, column=0, columnspan=2, pady=(30, 20), padx=50)
 
     def consultarNotas():
         ventanaNotas = tk.Toplevel()
         ventanaNotas.title("Mis Calificaciones")
-        ventanaNotas.geometry("800x600")
+        ventanaNotas.geometry("1000x700")
         ventanaNotas.resizable(False, False)
 
-        tk.Label(ventanaNotas, text="Mis Calificaciones", font=("Arial", 14)).grid(row=0, column=0, columnspan=2, pady=10)
+        # Configurar grid weights para centrar
+        ventanaNotas.grid_rowconfigure(0, weight=1)
+        ventanaNotas.grid_rowconfigure(3, weight=1)
+        ventanaNotas.grid_columnconfigure(0, weight=1)
+        ventanaNotas.grid_columnconfigure(1, weight=1)
 
-        columns = ("Modulo", "Materia", "Parcial1", "Parcial2", "Proyecto", "Promedio", "Estado")
-        tree = ttk.Treeview(ventanaNotas, columns=columns, show="headings")
+        tk.Label(ventanaNotas, text="Mis Calificaciones", font=("Arial", 16)).grid(row=1, column=0, columnspan=2, pady=(30, 20), padx=50)
 
-        for col in columns:
+        columns = ("Módulo", "Materia", "Parcial 1", "Parcial 2", "Proyecto", "Promedio", "Estado")
+        tree = ttk.Treeview(ventanaNotas, columns=columns, show="headings", height=20)
+
+        column_widths = [150, 200, 120, 120, 120, 120, 120]
+        for i, col in enumerate(columns):
             tree.heading(col, text=col)
-            tree.column(col, width=100)
+            tree.column(col, width=column_widths[i], anchor='center')
 
-        tree.grid(row=1, column=0, columnspan=2, padx=10, pady=10)
+        tree.grid(row=2, column=0, columnspan=2, padx=20, pady=20, sticky='nsew')
 
         def cargarCalificaciones():
             for item in tree.get_children():
@@ -71,7 +83,7 @@ def abrirVentanaEstudiante(documentoEstudiante):
         cargarCalificaciones()
 
     botonNotas = tk.Button(ventana, text="Ver Mis Notas", width=20, command=consultarNotas)
-    botonNotas.grid(row=1, column=0, columnspan=2, pady=10)
+    botonNotas.grid(row=2, column=0, columnspan=2, pady=20, padx=50)
 
     def cerrarSesion():
         ventana.destroy()
@@ -79,4 +91,4 @@ def abrirVentanaEstudiante(documentoEstudiante):
         abrirVentanaLogin()
 
     botonCerrar = tk.Button(ventana, text="Cerrar Sesión", width=20, command=cerrarSesion)
-    botonCerrar.grid(row=2, column=0, columnspan=2, pady=10)
+    botonCerrar.grid(row=3, column=0, columnspan=2, pady=20, padx=50)

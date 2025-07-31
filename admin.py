@@ -6,18 +6,24 @@ def abrirVentanaAdmin():
     def inscribirEstudiante():
         ventanaInscripcion = tk.Toplevel()
         ventanaInscripcion.title("Inscribir Estudiante a Módulo")
-        ventanaInscripcion.geometry("400x250")
+        ventanaInscripcion.geometry("500x300")
         ventanaInscripcion.resizable(False, False)
 
-        tk.Label(ventanaInscripcion, text="Inscripción de Estudiante", font=("Arial", 14)).grid(row=0, column=0, columnspan=2, pady=10)
+    
+        ventanaInscripcion.grid_rowconfigure(0, weight=1)
+        ventanaInscripcion.grid_rowconfigure(4, weight=1)
+        ventanaInscripcion.grid_columnconfigure(0, weight=1)
+        ventanaInscripcion.grid_columnconfigure(1, weight=1)
 
-        tk.Label(ventanaInscripcion, text="Documento Estudiante:").grid(row=1, column=0, padx=10, pady=5)
+        tk.Label(ventanaInscripcion, text="Inscripción de Estudiante", font=("Arial", 14)).grid(row=1, column=0, columnspan=2, pady=(30, 20), padx=50)
+
+        tk.Label(ventanaInscripcion, text="Documento Estudiante:").grid(row=2, column=0, padx=20, pady=10, sticky='e')
         entryDoc = tk.Entry(ventanaInscripcion)
-        entryDoc.grid(row=1, column=1, padx=10, pady=5)
+        entryDoc.grid(row=2, column=1, padx=20, pady=10, sticky='w')
 
-        tk.Label(ventanaInscripcion, text="Código del Módulo:").grid(row=2, column=0, padx=10, pady=5)
+        tk.Label(ventanaInscripcion, text="Código del Módulo:").grid(row=3, column=0, padx=20, pady=10, sticky='e')
         entryModulo = tk.Entry(ventanaInscripcion)
-        entryModulo.grid(row=2, column=1, padx=10, pady=5)
+        entryModulo.grid(row=3, column=1, padx=20, pady=10, sticky='w')
 
         def guardar_inscripcion():
             doc = entryDoc.get().strip()
@@ -62,7 +68,7 @@ def abrirVentanaAdmin():
             messagebox.showinfo("Éxito", f"Estudiante inscrito en módulo {modulo}.")
             ventanaInscripcion.destroy()
 
-        tk.Button(ventanaInscripcion, text="Inscribir", command=guardar_inscripcion).grid(row=3, column=0, columnspan=2, pady=15)
+        tk.Button(ventanaInscripcion, text="Inscribir", command=guardar_inscripcion).grid(row=4, column=0, columnspan=2, pady=30)
 
 
     def registrarModulos():
@@ -250,15 +256,22 @@ def abrirVentanaAdmin():
     def consultar_calificaciones():
         ventanaConsulta = tk.Toplevel()
         ventanaConsulta.title("Consultar Calificaciones")
-        ventanaConsulta.geometry("800x600")
+        ventanaConsulta.geometry("1200x700")
         ventanaConsulta.resizable(False, False)
 
-        titulo = tk.Label(ventanaConsulta, text="Consultar Calificaciones", font=("Arial", 14))
-        titulo.grid(row=0, column=0, columnspan=3, pady=10)
+        # Configurar grid weights para centrar
+        ventanaConsulta.grid_rowconfigure(0, weight=1)
+        ventanaConsulta.grid_rowconfigure(4, weight=1)
+        ventanaConsulta.grid_columnconfigure(0, weight=1)
+        ventanaConsulta.grid_columnconfigure(1, weight=1)
+        ventanaConsulta.grid_columnconfigure(2, weight=1)
 
-        tk.Label(ventanaConsulta, text="Módulo:").grid(row=1, column=0, padx=5, pady=5)
-        cajaModulo = tk.Entry(ventanaConsulta)
-        cajaModulo.grid(row=1, column=1, padx=5, pady=5)
+        titulo = tk.Label(ventanaConsulta, text="Consultar Calificaciones", font=("Arial", 16))
+        titulo.grid(row=1, column=0, columnspan=3, pady=(30, 20), padx=50)
+
+        tk.Label(ventanaConsulta, text="Módulo:").grid(row=2, column=0, padx=20, pady=10, sticky='e')
+        cajaModulo = tk.Entry(ventanaConsulta, width=40)
+        cajaModulo.grid(row=2, column=1, padx=20, pady=10, sticky='w')
 
         def cargar_datos():
             try:
@@ -312,42 +325,48 @@ def abrirVentanaAdmin():
                 messagebox.showinfo("Info", "No hay calificaciones registradas")
 
         botonConsultar = tk.Button(ventanaConsulta, text="Consultar", command=cargar_datos)
-        botonConsultar.grid(row=1, column=2, padx=5, pady=5)
+        botonConsultar.grid(row=2, column=2, padx=20, pady=10)
 
         columns = ('Documento', 'Nombre', 'Código Módulo', 'Materia', 'Parcial 1', 'Parcial 2', 'Proyecto', 'Promedio', 'Estado')
-        tree = ttk.Treeview(ventanaConsulta, columns=columns, show='headings')
+        tree = ttk.Treeview(ventanaConsulta, columns=columns, show='headings', height=20)
 
-        for col in columns:
+        column_widths = [120, 200, 120, 150, 100, 100, 100, 100, 100]
+        for i, col in enumerate(columns):
             tree.heading(col, text=col)
-            tree.column(col, width=100)
+            tree.column(col, width=column_widths[i], anchor='center')
 
-        tree.grid(row=2, column=0, columnspan=3, padx=10, pady=10)
+        tree.grid(row=3, column=0, columnspan=3, padx=20, pady=20, sticky='nsew')
 
-        labelEstadisticas = tk.Label(ventanaConsulta, text="", font=("Arial", 12))
-        labelEstadisticas.grid(row=3, column=0, columnspan=3, pady=10)
+        labelEstadisticas = tk.Label(ventanaConsulta, text="", font=("Arial", 14))
+        labelEstadisticas.grid(row=4, column=0, columnspan=3, pady=20)
 
     ventanaAdmin = tk.Toplevel()
     ventanaAdmin.title("Ventana Administrador")
-    ventanaAdmin.geometry("400x350")
+    ventanaAdmin.geometry("500x450")
     ventanaAdmin.resizable(False, False)
 
+    ventanaAdmin.grid_rowconfigure(0, weight=1)
+    ventanaAdmin.grid_rowconfigure(7, weight=1)
+    ventanaAdmin.grid_columnconfigure(0, weight=1)
+    ventanaAdmin.grid_columnconfigure(1, weight=1)
+
     labelTitulo = tk.Label(ventanaAdmin, text="Bienvenido Administrador", font=("Arial", 16))
-    labelTitulo.grid(row=0, column=0, columnspan=2, pady=(20, 10), padx=30)
+    labelTitulo.grid(row=1, column=0, columnspan=2, pady=(30, 10), padx=50)
 
     labelTexto = tk.Label(ventanaAdmin, text="Gestión de Calificaciones", font=("Arial", 12))
-    labelTexto.grid(row=1, column=0, columnspan=2, pady=(0, 20), padx=30)
+    labelTexto.grid(row=2, column=0, columnspan=2, pady=(0, 30), padx=50)
 
     botonRegistrar = tk.Button(ventanaAdmin, text="Inscribir a modulo", width=20, command=inscribirEstudiante)
-    botonRegistrar.grid(row=2, column=0, columnspan=2, pady=10, padx=30)
+    botonRegistrar.grid(row=3, column=0, columnspan=2, pady=15, padx=50)
 
     botonRModulo=tk.Button(ventanaAdmin,text="Registrar modulo",width=20,command=registrarModulos)
-    botonRModulo.grid(row=3,column=0,columnspan=2,pady=10,padx=30)
+    botonRModulo.grid(row=4,column=0,columnspan=2,pady=15,padx=50)
 
     botonCalificaciones = tk.Button(ventanaAdmin, text="Ingresar Calificaciones", width=20, command=ingresar_calificaciones)
-    botonCalificaciones.grid(row=4, column=0, columnspan=2, pady=10, padx=30)
+    botonCalificaciones.grid(row=5, column=0, columnspan=2, pady=15, padx=50)
 
     botonConsultar = tk.Button(ventanaAdmin, text="Consultar Calificaciones", width=20, command=consultar_calificaciones)
-    botonConsultar.grid(row=5, column=0, columnspan=2, pady=10, padx=30)
+    botonConsultar.grid(row=6, column=0, columnspan=2, pady=15, padx=50)
 
     def cerrar_sesion():
         ventanaAdmin.destroy()
@@ -355,4 +374,4 @@ def abrirVentanaAdmin():
         abrirVentanaLogin()
 
     botonCerrarSesion = tk.Button(ventanaAdmin, text="Cerrar Sesión", width=20, command=cerrar_sesion)
-    botonCerrarSesion.grid(row=6, column=0, columnspan=2, pady=10, padx=30)
+    botonCerrarSesion.grid(row=7, column=0, columnspan=2, pady=15, padx=50)

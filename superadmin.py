@@ -112,11 +112,9 @@ def verificar_datos_usuario(usuario, contraseña, nombre_completo, identificacio
     if not usuario or not contraseña or not nombre_completo:
         return False, "No se permiten campos vacíos."
    
-    # Usuario debe ser solo números (documento de identidad)
     if not usuario.isdigit():
         return False, "El usuario debe ser el número de documento de identidad (solo números)."
     
-    # Nombre completo debe contener solo letras y espacios
     if not all(c.isalpha() or c.isspace() for c in nombre_completo):
         return False, "El nombre completo solo debe contener letras y espacios."
 
@@ -138,6 +136,17 @@ def verificar_datos_usuario(usuario, contraseña, nombre_completo, identificacio
         return False, "La contraseña debe tener al menos una minúscula."
     if not tiene_num:
         return False, "La contraseña debe tener al menos un número."
+    
+    
+    try:
+        with open('datos/usuarios.txt', 'r', encoding='utf-8') as f:
+            for linea in f:
+                partes = linea.strip().split(',')
+                if len(partes) >= 1 and partes[0] == usuario:
+                    return False, f"Ya existe un usuario registrado con el documento {usuario}."
+    except FileNotFoundError:
+        pass
+    
     return True, "Datos validos."
 
 def registrar_usuario(usuario, contraseña, nombre_completo, rol, identificacion=None):
