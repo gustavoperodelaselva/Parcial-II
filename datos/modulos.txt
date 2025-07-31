@@ -1,1 +1,4 @@
 
+G20_1,Base de datos,Juan Mesino
+G20_2,Matematicas,Hanner Bermudez
+G20_3,Programacion,Antonio Caicedo
