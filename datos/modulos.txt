@@ -1,4 +1,1 @@
-G21_2,Matematicas,Gustavo Quintero
-G20_3,Programacion,Gustavo Quintero
-G20_1,Frontend,Gustavo Quintero
-G23_25,Matematicas,Junior Hoyos
+
