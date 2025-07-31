@@ -1,1 +1,10 @@
 superadmin,123,superadministrador
+
+
+1032547698,Jmesino123,profesor,Juan Mesino
+1001122334,Lmartinez123,estudiante,Laura Martinez
+1023456789,Krodriguez123,estudiante,Kevin Rodriguez
+1076543210,Dperez123,estudiante,Daniela Perez
+1034987654,Agomez123,estudiante,Andrez Gomez
+1145938276,Hbermudez123,profesor,Hanner Bermudez
+1002876543,Acaicedo123,profesor,Antonio Caicedo
