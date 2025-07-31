@@ -38,7 +38,7 @@ def abrirVentanaLogin():
 
     ventanaLogin = tk.Tk()
     ventanaLogin.title("Login")
-    ventanaLogin.geometry("300x280")
+    ventanaLogin.geometry("400x280")
 
 
     labelTitulo = tk.Label(ventanaLogin, text="Iniciar sesion", font=("Arial", 14))

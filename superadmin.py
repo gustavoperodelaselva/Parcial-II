@@ -7,7 +7,7 @@ def abrirVentanaSuperadmin():
     def abrirVentanaProfesor():
         ventanaProfesor = tk.Toplevel()
         ventanaProfesor.title("Registrar Profesor")
-        ventanaProfesor.geometry("400x300")
+        ventanaProfesor.geometry("500x300")
         ventanaProfesor.resizable(False, False)
 
         titulo = tk.Label(ventanaProfesor, text="Registrar Profesor", font=("Arial", 14))
@@ -46,7 +46,7 @@ def abrirVentanaSuperadmin():
     def abrirVentanaEstudiante():
         ventanaEstudiante = tk.Toplevel()
         ventanaEstudiante.title("Registrar Estudiante")
-        ventanaEstudiante.geometry("400x300")
+        ventanaEstudiante.geometry("500x300")
         ventanaEstudiante.resizable(False, False)
 
         titulo = tk.Label(ventanaEstudiante, text="Registrar Estudiante", font=("Arial", 14))

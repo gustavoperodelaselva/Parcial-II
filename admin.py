@@ -145,7 +145,7 @@ def abrirVentanaAdmin():
     def ingresar_calificaciones():
         ventanaCalificaciones = tk.Toplevel()
         ventanaCalificaciones.title("Ingresar Calificaciones")
-        ventanaCalificaciones.geometry("500x400")
+        ventanaCalificaciones.geometry("700x400")
         ventanaCalificaciones.resizable(False, False)
 
         titulo = tk.Label(ventanaCalificaciones, text="Ingresar Calificaciones", font=("Arial", 14))
